@@ -1,0 +1,12 @@
+<h1>My tasks</h1>
+
+<% @tasks.each do |task| %>
+<ul>
+  <li><% if task.completed === true %><%=check_box_tag :completed, 1, task.completed  %><% elsif task.completed.nil? || task.completed === false %><%=check_box_tag :completed, 1, task.completed %><% end %><%= link_to task.title, task_path(task.id) %> <%= link_to task_path(task.id), method: :delete, data: { confirm: "Are you sure?" } do %>
+    <i class="far fa-trash-alt"></i>
+  <% end %>
+  </li>
+</ul>
+<% end %>
+
+<%= link_to "Add a new task", tasks_new_path %>
